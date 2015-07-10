@@ -1,0 +1,22 @@
+{
+    "contents" : "",
+    "created" : 1436501173274.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "748994B6",
+    "lastKnownWriteTime" : 8589869056,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "caption" : "pacotesPerdidos",
+        "contentUrl" : "content?title=pacotesPerdidos&file=a13061ae14c3459ba82ad4a650476804.htm",
+        "displayedObservations" : 12,
+        "displayedVariables" : 5,
+        "totalObservations" : 12,
+        "variables" : 5
+    },
+    "source_on_save" : false,
+    "type" : "r_dataframe"
+}

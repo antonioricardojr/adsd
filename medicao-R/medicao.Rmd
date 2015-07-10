@@ -1,0 +1,167 @@
+---
+title: "Medição de Conexões na Internet"
+author: "Ana Carolina Cabral, Antonio Marques Junior, João Paulo Targino, Pedro Saraiva"
+date: "9 Julho 2015"
+output: pdf_document
+---
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+
+library(googleVis, quietly=TRUE)
+library(ggplot2, quietly=TRUE)
+```
+#Relatório de Medição
+##Avaliação do Desempenho do Serviço de Banda Larga GVT
+
+
+###Objetivo
+<p style="text-align: justify">
+A análise consiste em realizar um comparativo entre os desempenhos apresentados pelo serviço de banda larga da Global Village Telecom - GVT, quando utilizado em diferentes pontos na cidade de Campina Grande/PB. Para tanto, foram realizados experimentos utilizando diferentes computadores em três bairros da cidade e os resultados obtidos foram confrontados afim de detectar anomalias e diferenças consideráveis de desempenho entre as medições.
+</p>
+
+###Experimento
+<p style="text-align: justify">
+A análise da internet fornecida pela Global Village Telecom - GVT, provedor de internet escolhido para avaliação, foi feita através do comparativo dos resultados obtidos por clientes da empresa, que residem em três diferentes bairros  da cidade de Campina Grande/PB, através da execução de experimentos realizados simultaneamente.
+O experimento consiste na execução do comando ping para o endereço [www.google.com]() durante três dias, em sessões de 100 observações por vez, à tarde e à noite, em cada um dos locais determinados. Foram feitas 4500 medições em três locais diferentes, sendo 1500 em cada local, utilizando as configurações descritas na tabela abaixo.
+</p>
+###Configuração
+```{r, results='asis', tidy=TRUE,warning=FALSE,message=FALSE, echo=FALSE}
+op <- options(gvis.plot.tag='chart')
+configs <- read.csv("~/Documents/adsd/medicao-R/configs.csv", sep=";")
+tableConfigs <- gvisTable(configs, options=list(sort='disable'))
+plot(tableConfigs)
+```
+
+
+###Parâmentros e Métricas 
+<p style="text-align: justify">
+Os parâmetros considerados na análise foram o atraso do pacote, *jitter* (ou variação de atraso máximo e mínimo) e o descarte de pacotes, onde estes foram obtidos através da medição com o comando *ping*. Já as métricas utilizadas foram a média, para o atraso e *jitter*, e mediana para o descarte.
+</p>
+##Medição e Resultados
+<p style="text-align: justify">
+As medições foram realizadas em três dias diferentes (quinta-feira, sexta-feira e domingo). A intenção na escolha dos dias é de buscar amostras em momentos específicos da semana onde acredita-se que haja variações no tráfego de informação das conexões estudadas. Foram escolhidos dois horários específicos no período da tarde e noite, com a intenção de verificar oscilações também no decorrer do dia. Ainda para cada horário de medição, foram realizados duas coletas de 100 pings, em um intervalo de 30 minutos.
+</p>
+```{r, results='asis', tidy=TRUE,warning=FALSE,message=FALSE, echo=FALSE}
+medicoes <- read.csv("~/Documents/adsd/medicao-R/medicoes.csv", sep=";")
+tableMedicoes <- gvisTable(medicoes, options=list(sort='disable'))
+plot(tableMedicoes)
+
+```
+
+###Média de Atrasos e Intervalos de Confiança
+<p style="text-align: justify">
+O gráfico abaixo representa intervalos de confiança entre as médias das latências para cada conexão analisada no experimento. Através dos resultados obtidos podemos concluir que existe uma diferença significativa entre a média das latências das conexões, onde os intervalos não se sobrepõem, indicando tal diferença. A conexão referente ao bairro Jardim Tavares se destacou por possuir uma baixa latência se comparada com as demais consideradas neste experimento. Em relação as conexões nos bairros de Bodocongó e Catolé, as médias obtidas ficaram bem próximas e os intervalos de confiança quase se sobrepõem, indicando uma maior similaridade entre tais conexões.
+</p>
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
+library(dplyr, quietly=TRUE)
+library(ggplot2, quietly = TRUE)
+
+gvt35MB_jardim_tavares <- read.csv("~/Documents/adsd/medicao-R/GVT35MB-joao.txt")
+gvt35MB_catole <- read.csv("~/Documents/adsd/medicao-R/GVT35MB-antonio.txt")
+gvt15MB_bodocongo <- read.csv("~/Documents/adsd/gvt15MB-carol/GVT35MB-carol.txt")
+
+jardim_test <- t.test(gvt35MB_jardim_tavares$time, alternative = "two.sided", conf.int=TRUE)
+catole_test <- t.test(gvt35MB_catole$time, alternative = "two.sided", conf.int=TRUE)
+bodocongo_test <- t.test(gvt15MB_bodocongo$time, alternative = "two.sided", conf.int=TRUE)
+
+ic_jardim <- c(jardim_test$conf.int[1], jardim_test$conf.int[2])
+ic_catole <- c(catole_test$conf.int[1], catole_test$conf.int[2])
+ic_bodocongo <- c(bodocongo_test$conf.int[1], bodocongo_test$conf.int[2])
+
+bairros <- rbind(mutate(gvt35MB_jardim_tavares, bairro="jardim tavares"), 
+                       mutate(gvt35MB_catole, bairro="catole"),
+                       mutate(gvt15MB_bodocongo, bairro="bodocongo"))
+
+toPlot <- bairros %>% group_by(bairro) %>% summarise(media = mean(time, na.rm=TRUE))
+
+toPlot = mutate(toPlot, lower = ifelse(toPlot$bairro == "catole",ic_catole[1],
+                                       ifelse(toPlot$bairro == "bodocongo", ic_bodocongo[1] ,ic_jardim[1])))
+toPlot = mutate(toPlot, upper = ifelse(toPlot$bairro == "catole",ic_catole[2],
+                                       ifelse(toPlot$bairro == "bodocongo", ic_bodocongo[2],ic_jardim[2])))
+
+ggplot(toPlot, aes(x = bairro, y=media, colour = bairro)) + 
+  geom_point() +
+  geom_errorbar(aes(ymin=lower, ymax=upper), width=.1) + theme_bw()
+
+
+```
+
+###Diferença de atrasos máximo e mínimo (*Jitter*)
+<p style="text-align: justify">
+O *jitter* representa a diferença entre os atrasos máximo e mínimo obtidas em uma medição. A tabela a seguir mostra os *jitters* obtidos para cada medição realizada, em seus respectivos locais e horários. Neste caso foi observado uma diferença mais expressiva entre as conexões testadas, especialmente para a do bairro Catolé, onde foi registrado um valor de 1056.96ms que se destacou bastante dentre os demais obtidos no experimento.
+</p>
+```{r, results='asis', tidy=TRUE,warning=FALSE,message=FALSE, echo=FALSE}
+jitters.table <- read.csv("~/Documents/adsd/medicao-R/jitters-table.csv", sep=";")
+jittersTable <- gvisTable(jitters.table, options=list(sort='disable'))
+plot(jittersTable)
+```
+
+###Representação Gráfica
+<p style="text-align: justify">
+O *boxplot* abaixo representa uma visão geral das diferenças de atrasos obtidos para cada medição, onde é possível destacar a conexão do bairro Jardim Tavares por ter registrado valores concentrados e próximos de zero, indicando que não ocorreu uma variação brusca no tempo de resposta das medições. Por outro lado, a conexão no bairro do Catolé registrou valores bem variados, onde se destacam dois *outliers* da sexta-feira e domingo, dias estes onde ocorreram atrasos considerados longos quando comparados aos demais valores obtidos.
+</p>
+
+```{r fig.width=6, fig.height=4, echo=FALSE, warning=FALSE, message=FALSE}
+jitters <- read.csv("~/Documents/adsd/medicao-R/Jitters.csv")
+ggplot(data=jitters, aes(factor(bairro), jitter)) + geom_boxplot() + theme_bw() + labs(x="Bairro")
+```
+<p style="text-align: justify">
+Os gráficos a seguir são histogramas dos valores observados divididos por dias da semana e bairros.
+</p>
+```{r fig.width=6, fig.height=4, echo=FALSE, warning=FALSE, message=FALSE}
+jitters_quinta <- jitters %>% filter(dia == "1-Quinta")
+ggplot(data=jitters_quinta, aes(x=jitter, fill=bairro)) + geom_bar() + facet_wrap(~ bairro) + 
+  labs(title="Quinta-Feira") + theme_bw()
+
+```
+
+```{r fig.width=6, fig.height=4, echo=FALSE, warning=FALSE, message=FALSE}
+jitters_sexta <- jitters %>% filter(dia == "2-Sexta")
+ggplot(data=jitters_sexta, aes(x=jitter, fill=bairro)) + geom_bar() + facet_wrap(~ bairro) + 
+  labs(title="Sexta-Feira") + theme_bw()
+```
+
+```{r fig.width=6, fig.height=4, echo=FALSE, warning=FALSE, message=FALSE}
+jitters_domingo <- jitters %>% filter(dia == "3-Domingo")
+ggplot(data=jitters_domingo, aes(x=jitter, fill=bairro)) + geom_bar() + facet_wrap(~ bairro) + 
+  labs(title="Domingo") + theme_bw()
+
+```
+<p style="text-align: justify">
+Novamente é possível observar uma maior constância nas observações para o bairro Jardim Tavares, onde as variações de atrasos se concentram em valores próximos de zero, indicando uma baixa variação nos atrasos dos pacotes. Já a a conexão situada no bairro Catolé possui valores mais distribuidos, sofrendo as maiores variações, indicando que podem existir problemas nesta conexão. A conexão do bairro Bodocongó registrou observações mais distribuídas na Quinta-feira. É possível observar através da escala que mesmo tais observações se encontrem mais distribuídas, a escala no gráfico é menor, indicando uma baixa variação (em torno de 50ms a 150ms).
+</p>
+
+###Porcentagem de Perda de Pacotes
+
+```{r, results='asis', tidy=TRUE,warning=FALSE,message=FALSE, echo=FALSE}
+
+pacotesPerdidos <- read.csv("~/Documents/adsd/medicao-R/pacotesPerdidos.csv", sep=";")
+tablePacotesPerdidos <- gvisTable(pacotesPerdidos, options=list(sort='disable'))
+plot(tablePacotesPerdidos)
+```
+
+###Representação Gráfica
+<p style="text-align: justify">
+Através do gráfico abaixo é possível ter uma noção de como as conexões se comportam no quesito de perda de pacotes. A conexão referente ao bairro Jardim Tavares apresentou uma baixa perda, onde o número de pacotes perdidos foi zero em todos os dias do experimento, com exceção do domingo no horário da tarde onde foram observados dois *outliers* (23 e 18 pacotes perdidos). Esses eventos podem caracterizar algum tipo de problema de conexão naquele horário, proveniente de alguma alteração brusca na rede de causa desconhecida.
+A conexão situada no bairro do Catolé mais uma vez se comportou de forma incomum se comparadas com as demais conexões do experimento, sofrendo mais perdas de pacotes e em especial, na sexta-feira em ambos os horários que foram realizadas as medições. Já a conexão do bairro Bodocongó sofreu pouca variação e suas perdas foram baixas não foram tão significativas quando comparadas com as do bairro Catolé.
+</p>
+```{r fig.width=6, fig.height=4, echo=FALSE, warning=FALSE, message=FALSE}
+
+pacs_catole <- pacotesPerdidos[c(3)]
+pacs_catole$bairro <- "Catole"
+colnames(pacs_catole) <- c("numPacotes", "bairro")
+pacs_jardim <- pacotesPerdidos[c(4)]
+pacs_jardim$bairro <- "Jardim Tavares"
+colnames(pacs_jardim) <- c("numPacotes", "bairro")
+pacs_bodocongo <- pacotesPerdidos[c(5)]
+pacs_bodocongo$bairro <- "Bodocongo"
+colnames(pacs_bodocongo) <- c("numPacotes", "bairro")
+pacs <- rbind(pacs_catole, pacs_jardim, pacs_bodocongo)
+
+ggplot(data=pacs, aes(x=factor(bairro), numPacotes)) + geom_boxplot() + theme_bw()
+
+```
+
+###Conclusão
+<p style="text-align: justify">
+Após o estudo e medições apresentados acima é possivel verificar que o sistema de banda larga oferecido pela GVT se comporta de forma distinta nos bairros de Campina Grande. Das amostras coletadas foi constatado que a diferença entre o serviço no bairro do Catolé e Jardim Tavares é significativa, mesmo ambos possuindo o mesmo plano e velocidade (35Mb/s), e que a prestatividade para a conexão situada no bairro Bodocongó, mesmo que o pacote contratado seja inferior, se equipara com o do bairro do Catolé.
+</p>

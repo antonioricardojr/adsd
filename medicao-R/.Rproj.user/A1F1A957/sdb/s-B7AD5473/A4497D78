@@ -1,0 +1,22 @@
+{
+    "contents" : "",
+    "created" : 1436501596343.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "A4497D78",
+    "lastKnownWriteTime" : 256,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "caption" : "jitters",
+        "contentUrl" : "content?title=jitters&file=fc39609e2a9445b79701790bdec642b1.htm",
+        "displayedObservations" : 36,
+        "displayedVariables" : 4,
+        "totalObservations" : 36,
+        "variables" : 4
+    },
+    "source_on_save" : false,
+    "type" : "r_dataframe"
+}

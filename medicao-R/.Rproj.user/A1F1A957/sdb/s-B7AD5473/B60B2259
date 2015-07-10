@@ -1,0 +1,22 @@
+{
+    "contents" : "",
+    "created" : 1436501858702.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "B60B2259",
+    "lastKnownWriteTime" : 7308604914264011873,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "caption" : "catole",
+        "contentUrl" : "content?title=catole&file=df7115aa4f8f498e9075da552680b4a1.htm",
+        "displayedObservations" : 12,
+        "displayedVariables" : 1,
+        "totalObservations" : 12,
+        "variables" : 1
+    },
+    "source_on_save" : false,
+    "type" : "r_dataframe"
+}

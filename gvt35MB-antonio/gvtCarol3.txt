@@ -1,0 +1,105 @@
+PING www.google.com (216.58.222.36): 56 data bytes
+64 bytes from 216.58.222.36: icmp_seq=0 ttl=53 time=83.134 ms
+64 bytes from 216.58.222.36: icmp_seq=1 ttl=53 time=63.509 ms
+64 bytes from 216.58.222.36: icmp_seq=2 ttl=53 time=65.898 ms
+64 bytes from 216.58.222.36: icmp_seq=3 ttl=53 time=66.601 ms
+64 bytes from 216.58.222.36: icmp_seq=4 ttl=53 time=65.641 ms
+64 bytes from 216.58.222.36: icmp_seq=5 ttl=53 time=68.973 ms
+64 bytes from 216.58.222.36: icmp_seq=6 ttl=53 time=88.852 ms
+64 bytes from 216.58.222.36: icmp_seq=7 ttl=53 time=82.694 ms
+64 bytes from 216.58.222.36: icmp_seq=8 ttl=53 time=84.350 ms
+64 bytes from 216.58.222.36: icmp_seq=9 ttl=53 time=84.052 ms
+64 bytes from 216.58.222.36: icmp_seq=10 ttl=53 time=84.221 ms
+64 bytes from 216.58.222.36: icmp_seq=11 ttl=53 time=91.240 ms
+64 bytes from 216.58.222.36: icmp_seq=12 ttl=53 time=82.771 ms
+64 bytes from 216.58.222.36: icmp_seq=13 ttl=53 time=80.472 ms
+64 bytes from 216.58.222.36: icmp_seq=14 ttl=53 time=80.569 ms
+64 bytes from 216.58.222.36: icmp_seq=15 ttl=53 time=78.064 ms
+64 bytes from 216.58.222.36: icmp_seq=16 ttl=53 time=78.965 ms
+64 bytes from 216.58.222.36: icmp_seq=17 ttl=53 time=84.578 ms
+64 bytes from 216.58.222.36: icmp_seq=18 ttl=53 time=91.669 ms
+64 bytes from 216.58.222.36: icmp_seq=19 ttl=53 time=90.635 ms
+64 bytes from 216.58.222.36: icmp_seq=20 ttl=53 time=83.670 ms
+64 bytes from 216.58.222.36: icmp_seq=21 ttl=53 time=76.828 ms
+64 bytes from 216.58.222.36: icmp_seq=22 ttl=53 time=75.543 ms
+64 bytes from 216.58.222.36: icmp_seq=23 ttl=53 time=73.508 ms
+64 bytes from 216.58.222.36: icmp_seq=24 ttl=53 time=70.472 ms
+64 bytes from 216.58.222.36: icmp_seq=25 ttl=53 time=67.328 ms
+64 bytes from 216.58.222.36: icmp_seq=26 ttl=53 time=67.828 ms
+64 bytes from 216.58.222.36: icmp_seq=27 ttl=53 time=69.613 ms
+64 bytes from 216.58.222.36: icmp_seq=28 ttl=53 time=80.035 ms
+64 bytes from 216.58.222.36: icmp_seq=29 ttl=53 time=72.507 ms
+64 bytes from 216.58.222.36: icmp_seq=30 ttl=53 time=66.740 ms
+64 bytes from 216.58.222.36: icmp_seq=31 ttl=53 time=66.634 ms
+64 bytes from 216.58.222.36: icmp_seq=32 ttl=53 time=66.714 ms
+64 bytes from 216.58.222.36: icmp_seq=33 ttl=53 time=66.984 ms
+64 bytes from 216.58.222.36: icmp_seq=34 ttl=53 time=64.442 ms
+64 bytes from 216.58.222.36: icmp_seq=35 ttl=53 time=65.048 ms
+64 bytes from 216.58.222.36: icmp_seq=36 ttl=53 time=66.617 ms
+64 bytes from 216.58.222.36: icmp_seq=37 ttl=53 time=67.084 ms
+64 bytes from 216.58.222.36: icmp_seq=38 ttl=53 time=64.854 ms
+64 bytes from 216.58.222.36: icmp_seq=39 ttl=53 time=67.139 ms
+64 bytes from 216.58.222.36: icmp_seq=40 ttl=53 time=66.544 ms
+64 bytes from 216.58.222.36: icmp_seq=41 ttl=53 time=67.104 ms
+64 bytes from 216.58.222.36: icmp_seq=42 ttl=53 time=66.238 ms
+64 bytes from 216.58.222.36: icmp_seq=43 ttl=53 time=65.338 ms
+64 bytes from 216.58.222.36: icmp_seq=44 ttl=53 time=67.588 ms
+64 bytes from 216.58.222.36: icmp_seq=45 ttl=53 time=66.922 ms
+64 bytes from 216.58.222.36: icmp_seq=46 ttl=53 time=66.656 ms
+Request timeout for icmp_seq 47
+64 bytes from 216.58.222.36: icmp_seq=48 ttl=53 time=67.545 ms
+64 bytes from 216.58.222.36: icmp_seq=49 ttl=53 time=67.013 ms
+64 bytes from 216.58.222.36: icmp_seq=50 ttl=53 time=69.548 ms
+64 bytes from 216.58.222.36: icmp_seq=51 ttl=53 time=68.847 ms
+Request timeout for icmp_seq 52
+64 bytes from 216.58.222.36: icmp_seq=53 ttl=53 time=69.911 ms
+64 bytes from 216.58.222.36: icmp_seq=54 ttl=53 time=87.954 ms
+Request timeout for icmp_seq 55
+64 bytes from 216.58.222.36: icmp_seq=56 ttl=53 time=67.542 ms
+64 bytes from 216.58.222.36: icmp_seq=57 ttl=53 time=73.502 ms
+Request timeout for icmp_seq 58
+64 bytes from 216.58.222.36: icmp_seq=59 ttl=53 time=82.514 ms
+64 bytes from 216.58.222.36: icmp_seq=60 ttl=53 time=90.757 ms
+64 bytes from 216.58.222.36: icmp_seq=61 ttl=53 time=76.388 ms
+64 bytes from 216.58.222.36: icmp_seq=62 ttl=53 time=82.572 ms
+64 bytes from 216.58.222.36: icmp_seq=63 ttl=53 time=77.223 ms
+64 bytes from 216.58.222.36: icmp_seq=64 ttl=53 time=66.323 ms
+64 bytes from 216.58.222.36: icmp_seq=65 ttl=53 time=67.807 ms
+64 bytes from 216.58.222.36: icmp_seq=66 ttl=53 time=73.401 ms
+64 bytes from 216.58.222.36: icmp_seq=67 ttl=53 time=93.801 ms
+64 bytes from 216.58.222.36: icmp_seq=68 ttl=53 time=149.280 ms
+64 bytes from 216.58.222.36: icmp_seq=69 ttl=53 time=76.697 ms
+Request timeout for icmp_seq 70
+Request timeout for icmp_seq 71
+Request timeout for icmp_seq 72
+64 bytes from 216.58.222.36: icmp_seq=73 ttl=53 time=71.507 ms
+64 bytes from 216.58.222.36: icmp_seq=74 ttl=53 time=68.263 ms
+64 bytes from 216.58.222.36: icmp_seq=75 ttl=53 time=68.472 ms
+64 bytes from 216.58.222.36: icmp_seq=76 ttl=53 time=158.817 ms
+64 bytes from 216.58.222.36: icmp_seq=77 ttl=53 time=81.503 ms
+64 bytes from 216.58.222.36: icmp_seq=78 ttl=53 time=109.702 ms
+64 bytes from 216.58.222.36: icmp_seq=79 ttl=53 time=97.347 ms
+64 bytes from 216.58.222.36: icmp_seq=80 ttl=53 time=74.536 ms
+64 bytes from 216.58.222.36: icmp_seq=81 ttl=53 time=68.686 ms
+64 bytes from 216.58.222.36: icmp_seq=82 ttl=53 time=66.701 ms
+64 bytes from 216.58.222.36: icmp_seq=83 ttl=53 time=78.435 ms
+64 bytes from 216.58.222.36: icmp_seq=84 ttl=53 time=86.147 ms
+Request timeout for icmp_seq 85
+64 bytes from 216.58.222.36: icmp_seq=86 ttl=53 time=85.495 ms
+Request timeout for icmp_seq 87
+64 bytes from 216.58.222.36: icmp_seq=88 ttl=53 time=128.440 ms
+Request timeout for icmp_seq 89
+64 bytes from 216.58.222.36: icmp_seq=90 ttl=53 time=66.894 ms
+64 bytes from 216.58.222.36: icmp_seq=91 ttl=53 time=68.964 ms
+Request timeout for icmp_seq 92
+64 bytes from 216.58.222.36: icmp_seq=93 ttl=53 time=74.882 ms
+64 bytes from 216.58.222.36: icmp_seq=94 ttl=53 time=102.140 ms
+64 bytes from 216.58.222.36: icmp_seq=95 ttl=53 time=358.173 ms
+64 bytes from 216.58.222.36: icmp_seq=96 ttl=53 time=124.301 ms
+64 bytes from 216.58.222.36: icmp_seq=97 ttl=53 time=68.895 ms
+64 bytes from 216.58.222.36: icmp_seq=98 ttl=53 time=192.202 ms
+64 bytes from 216.58.222.36: icmp_seq=99 ttl=53 time=77.988 ms
+
+--- www.google.com ping statistics ---
+100 packets transmitted, 89 packets received, 11.0% packet loss
+round-trip min/avg/max/stddev = 63.509/82.584/358.173/35.878 ms

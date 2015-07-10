@@ -1,0 +1,17 @@
+{
+    "contents" : "library(dplyr, quietly=TRUE)\nlibrary(ggplot2, quietly = TRUE)\n\ngvt35MB_jardim_tavares <- read.csv(\"~/Documents/adsd/medicao-R/GVT35MB-joao.txt\")\ngvt35MB_catole <- read.csv(\"~/Documents/adsd/medicao-R/GVT35MB-antonio.txt\")\ngvt15MB_bodocongo <- read.csv(\"~/Documents/adsd/gvt15MB-carol/GVT35MB-carol.txt\")\n\n\nsummary(gvt35MB_jardim_tavares)\nsummary(gvt35MB_catole)\nsummary(gvt15MB_bodocongo)\n\njardim_test <- t.test(gvt35MB_jardim_tavares$time, alternative = \"two.sided\", conf.int=TRUE)\ncatole_test <- t.test(gvt35MB_catole$time, alternative = \"two.sided\", conf.int=TRUE)\nbodocongo_test <- t.test(gvt15MB_bodocongo$time, alternative = \"two.sided\", conf.int=TRUE)\n\nic_jardim <- c(jardim_test$conf.int[1], jardim_test$conf.int[2])\nic_catole <- c(catole_test$conf.int[1], catole_test$conf.int[2])\nic_bodocongo <- c(bodocongo_test$conf.int[1], bodocongo_test$conf.int[2])\n\nbairros <- rbind(mutate(gvt35MB_jardim_tavares, bairro=\"jardim tavares\"), \n                       mutate(gvt35MB_catole, bairro=\"catole\"),\n                       mutate(gvt15MB_bodocongo, bairro=\"bodocongo\"))\n\nsummary(bairros)\n\n\ntoPlot <- bairros %>% group_by(bairro) %>% summarise(media = mean(time, na.rm=TRUE))\n\ntoPlot = mutate(toPlot, lower = ifelse(toPlot$bairro == \"catole\",ic_catole[1],\n                                       ifelse(toPlot$bairro == \"bodocongo\", ic_bodocongo[1] ,ic_jardim[1])))\ntoPlot = mutate(toPlot, upper = ifelse(toPlot$bairro == \"catole\",ic_catole[2],\n                                       ifelse(toPlot$bairro == \"bodocongo\", ic_bodocongo[2],ic_jardim[2])))\n\nggplot(toPlot, aes(x = bairro, y=media, colour = bairro)) + \n  geom_point() +\n  geom_errorbar(aes(ymin=lower, ymax=upper), width=.1) + theme_bw()\n\n\n##JITTERS\n\njitters <- read.csv(\"~/Documents/adsd/medicao-R/Jitters.csv\")\n\n\nggplot(data=jitters, aes(x=jitter, fill=bairro)) + geom_bar() + facet_wrap(~ dia) + theme_bw()\n\n\nggplot(data=jitters, aes(x=jitter, fill=bairro)) + \n  geom_freqpoly(aes(group = factor(bairro), colour = factor(bairro))) + facet_wrap(~ dia)  + theme_bw()\n\n\n\nggplot(data=jitters, aes(factor(bairro), jitter)) + geom_boxplot() + theme_bw() + labs(x=\"Bairro\")\n\njitters_quinta <- jitters %>% filter(dia == \"1-Quinta\")\nggplot(data=jitters_quinta, aes(x=jitter, fill=bairro)) + geom_bar() + facet_wrap(~ bairro) + \n  labs(title=\"Quinta-Feira\") + theme_bw()\n\njitters_sexta <- jitters %>% filter(dia == \"2-Sexta\")\nggplot(data=jitters_sexta, aes(x=jitter, fill=bairro)) + geom_bar() + facet_wrap(~ bairro) + \n  labs(title=\"Sexta-Feira\") + theme_bw()\n\njitters_domingo <- jitters %>% filter(dia == \"3-Domingo\")\nggplot(data=jitters_domingo, aes(x=jitter, fill=bairro)) + geom_bar() + facet_wrap(~ bairro) + \n  labs(title=\"Domingo\") + theme_bw()\n",
+    "created" : 1436473236312.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "613672445",
+    "id" : "4818E16A",
+    "lastKnownWriteTime" : 1436477258,
+    "path" : "~/Documents/adsd/medicao-R/medicao.R",
+    "project_path" : "medicao.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}

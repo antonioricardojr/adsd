@@ -1,0 +1,22 @@
+{
+    "contents" : "",
+    "created" : 1436501697916.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "885959EE",
+    "lastKnownWriteTime" : 4294967296,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "caption" : "pacs",
+        "contentUrl" : "content?title=pacs&file=9e775da0747b47c7bdf5dc51ec8418a9.htm",
+        "displayedObservations" : "36",
+        "displayedVariables" : 3,
+        "totalObservations" : "36",
+        "variables" : "2"
+    },
+    "source_on_save" : false,
+    "type" : "r_dataframe"
+}

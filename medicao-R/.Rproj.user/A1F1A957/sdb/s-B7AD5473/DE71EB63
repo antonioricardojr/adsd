@@ -1,0 +1,22 @@
+{
+    "contents" : "",
+    "created" : 1436502020143.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "DE71EB63",
+    "lastKnownWriteTime" : 6638343631145496064,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "caption" : "pacs_bodocongo",
+        "contentUrl" : "content?title=pacs_bodocongo&file=9680f41008f5401e8eb73b18e0e38e26.htm",
+        "displayedObservations" : 12,
+        "displayedVariables" : 2,
+        "totalObservations" : 12,
+        "variables" : 2
+    },
+    "source_on_save" : false,
+    "type" : "r_dataframe"
+}
